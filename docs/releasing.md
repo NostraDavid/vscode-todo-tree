@@ -1,7 +1,7 @@
 # Publish a small release
 
 Publish one useful fix or feature when it is ready. Do not wait for unrelated work.
-The first NostraDavid release is **1.0.0**. The original project's `0.0.x` history has a separate [archive](upstream-CHANGELOG.md).
+The fork follows its own release line. The original project's `0.0.x` history has a separate [archive](upstream-CHANGELOG.md).
 
 Use patch versions such as `1.0.1` for compatible fixes, minor versions such as `1.1.0` for compatible features, and major versions for breaking changes.
 The move to `1.0.0` establishes this fork's own release history. It does not rename existing `todo-tree.*` settings.
@@ -10,7 +10,7 @@ The move to `1.0.0` establishes this fork's own release history. It does not ren
 
 1. Start from an updated checkout and enter `nix develop`.
 2. Run `just sync` to install the locked dependencies.
-3. For the first release, keep the existing version `1.0.0`. For the next compatible fix, run:
+3. For a compatible fix, run:
 
    ```bash
    just version patch
@@ -19,24 +19,24 @@ The move to `1.0.0` establishes this fork's own release history. It does not ren
    This updates both npm manifests without making a commit or tag.
    Use `just version minor` or `just version major` when the compatibility change requires it.
 
-4. Move the completed items from **Unreleased** into a dated section such as `## [1.0.1] - 2026-10-26`.
-5. Keep an empty **Unreleased** section for the next change.
+4. Keep user-visible changes under **Unreleased**. Copy the release notes into a dated section, such as `## [1.0.19] - 2026-11-01`; `release-check` reads that versioned section.
+5. Do not empty **Unreleased** before publication. After the release is complete, clear it for the next cycle.
 6. Describe what changes for users. Link imported PRs and credit their authors.
 7. Run `just format`, `just check`, and `just package`.
 8. Install the resulting VSIX in a separate VS Code profile and follow [the first TODO guide](getting-started.md).
-9. Review the changes and commit them with a scoped message such as `release: prepare 1.0.1`.
+9. Review the changes and commit them with a scoped message such as `release: prepare 1.0.19`.
 
 `just release-check` rejects a package or lockfile version that does not match the changelog.
 The release workflow also checks that its Git tag matches the package version.
 
 ## Publish a release
 
-For the first release, run the following commands after its checks pass:
+After review and approval, tag and push the prepared version. For the current 1.0.19 preparation, no tag or publication has been made:
 
 ```bash
-git tag -a v1.0.0 -m 'Release 1.0.0'
+git tag -a v1.0.19 -m 'Release 1.0.19'
 git push origin master
-git push origin v1.0.0
+git push origin v1.0.19
 ```
 
 For later releases, substitute their version in the tag and message.
@@ -63,7 +63,7 @@ The GitHub build and release steps remain usable without a Marketplace credentia
    Use the Microsoft account that owns this publisher and an existing Azure DevOps organization, or create one only after reviewing the subscription requirement above.
 2. Select **All accessible organizations** and only the **Marketplace: Manage** scope.
 3. Give the token a short lifetime, at most 30 days. Do not choose an expiry after **2026-12-01**.
-4. Open [the repository's Actions secrets](https://github.com/NostraDavid/todo-tree/settings/secrets/actions).
+4. Open [the repository's Actions secrets](https://github.com/NostraDavid/vscode-todo-tree/settings/secrets/actions).
 5. Create a repository secret named **VSCE_PAT** and paste the token directly into its secret field.
 6. Save the secret. Do not paste the token into chat, source files, terminal commands, or issue reports.
 
@@ -79,19 +79,19 @@ If Microsoft has not enabled trusted publishing, use its [documented Microsoft E
 
 ## Publish an existing GitHub release
 
-Use this to publish the already-built **v1.0.0**, or to retry after fixing credentials or a Marketplace outage.
-It does not move the tag or change the GitHub release asset.
+Use this only for a version that already has a GitHub release and VSIX asset, or to retry after fixing credentials or a Marketplace outage.
+It does not move the tag or change the GitHub release asset. Version **v1.0.19** is currently prepared but not published.
 
 1. Open the repository's **Actions** tab.
 2. Select **Release**, then **Run workflow**.
-3. Use the `master` branch and enter the existing release tag, such as `v1.0.0`.
+3. Use the `master` branch and enter the exact existing release tag, such as `v1.0.19` after it has been published.
 4. Run the workflow. The GitHub build job is skipped and the Marketplace job downloads the existing release asset.
 5. Confirm that **Verify the published version** passes, then check [the public listing](https://marketplace.visualstudio.com/items?itemName=nostradavid.nostradavid-todo-tree).
 
 The equivalent command is:
 
 ```bash
-gh workflow run release.yml --repo NostraDavid/todo-tree --ref master -f tag=v1.0.0
+gh workflow run release.yml --repo NostraDavid/vscode-todo-tree --ref master -f tag=v1.0.19
 ```
 
 Repeated publication uses `--skip-duplicate`, so it preserves an already-published version.
@@ -100,7 +100,7 @@ If Marketplace validation or indexing takes longer than two minutes, wait for it
 
 ## Check and recover a release
 
-Install the public Marketplace version in a separate VS Code profile and check one TODO search.
+After Marketplace publication is verified, install that version in a separate VS Code profile and check one TODO search.
 If a published version is broken, fix it and publish the next patch version. Do not move a public tag or reuse a published version number.
 
 If automatic publication is unavailable, download the tested VSIX from the GitHub release and upload it through [publisher management](https://marketplace.visualstudio.com/manage/publishers/nostradavid).

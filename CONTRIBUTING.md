@@ -82,11 +82,10 @@ An unavailable advisory service makes the audit fail, so retry it when your netw
 Packaging produces `nostradavid-todo-tree-<version>.vsix` without uploading anything.
 The production build uses the committed codicon list and does not fetch a changing file from the internet.
 
-The packaging tool uses `@vscode/vsce` 4.0.0 with npm overrides for `@azure/identity` 4.13.0 and `uuid` 11.1.1.
-The Identity pin avoids an MSAL version affected by [GHSA-xcx6-jx8p-x3h5](https://github.com/advisories/GHSA-xcx6-jx8p-x3h5).
-The UUID pin repairs [GHSA-w5hq-g745-h8pq](https://github.com/advisories/GHSA-w5hq-g745-h8pq) while preserving its CommonJS `v4` API.
+Keep `@types/node` on the latest 24.x release while `devEngines.runtime` restricts development to Node 24; Node 26 declarations can expose APIs unavailable to the supported runtime. Keep `@types/vscode` at 1.72.0 while `engines.vscode` supports `^1.72.0`, so TypeScript does not allow APIs newer than the minimum editor version. Update that declaration version only with a separate compatibility check against VS Code 1.72.
+
+`@vscode/vsce` 4.1.0 still declares `minimatch` `^10.2.6`, but npm audit reports versions below 11.0.1 for [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249). Its package-scoped override selects 11.0.3, above VSCE's declared semver range; rerun packaging and verify `.vscodeignore` exclusions when changing this override. The former `@azure/identity` and `uuid` overrides were removed: VSCE resolves `@azure/identity` 4.14.1, and the resolved dependency tree no longer includes `uuid`.
 These dependencies belong to the development tooling and are not bundled into the extension.
-Remove the overrides when the tool resolves fixed dependencies, then rerun the audit and VSIX packaging.
 
 Open the VSIX in a separate VS Code profile and follow the [first TODO guide](docs/getting-started.md).
 The automated Node tests do not replace this check in the actual editor.

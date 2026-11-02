@@ -57,6 +57,10 @@ QUnit.test('utils.removeBlockComments strips block comments based on filename', 
   assert.equal(utils.removeBlockComments('{- a\nb -}', 'x.hs'), ' a\nb ');
 });
 
+QUnit.test('utils.removeBlockComments recognizes Go multiline comments', function(assert) {
+  assert.equal(utils.removeBlockComments('/* a\nb */', 'x.go'), ' a\nb ');
+});
+
 QUnit.test('utils.extractTag removes everything including tag', function(assert) {
   var testConfig = stubs.getTestConfig();
   testConfig.shouldGroupByTagFlag = true;

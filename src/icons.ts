@@ -9,6 +9,15 @@ import themeColourNames = require('./themeColourNames');
 import codiconNames = require('./codiconNames');
 import productIconNames = require('./productIconNames');
 
+const octiconAliases: Record<string, string> = {
+  commit: 'git-commit',
+  'issue-tracked-in': 'issue-tracked-by',
+};
+
+function resolveOcticonName(name: string) {
+  return octiconAliases[name] ?? name;
+}
+
 export function getIcon(
   context: Pick<vscode.ExtensionContext, 'asAbsolutePath' | 'globalStorageUri'>,
   tag: string,
@@ -66,6 +75,7 @@ export function getIcon(
     }
     return new vscode.ThemeIcon(iconName.trim().substr(2, iconName.trim().length - 3), themeColour);
   } else if (iconName) {
+    iconName = resolveOcticonName(iconName);
     if (!octicons[iconName]) {
       iconName = 'check';
     }
@@ -122,7 +132,7 @@ export function validateIcons(workspace: Pick<typeof vscode.workspace, 'getConfi
         if (codiconNames.indexOf(codicon) === -1 && productIconNames.indexOf(codicon) === -1) {
           invalidIcons.push(setting + '.icon(' + icon + ')');
         }
-      } else if (!octicons[icon] && (icon !== 'todo-tree' && icon !== 'todo-tree-filled')) {
+      } else if (!octicons[resolveOcticonName(icon)] && (icon !== 'todo-tree' && icon !== 'todo-tree-filled')) {
         invalidIcons.push(setting + '.icon(' + icon + ')');
       }
     }

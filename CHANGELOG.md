@@ -6,6 +6,26 @@ The original Todo Tree release history is preserved in [the upstream changelog](
 
 ## [Unreleased]
 
+### Changed
+
+- Replace inherited README text with concise fork-specific installation and configuration guidance; retain the `#configuration`, `#highlighting` and `#markdown-support` anchors and relevant attribution notices.
+- Update repository links and settings/help destinations to `NostraDavid/vscode-todo-tree`; keep historical upstream issue and contribution links intact.
+- Remove the unused Marketplace icon metadata and `resources/todo-tree.png`; runtime settings and commands are unchanged.
+- Preserve legacy Octicons settings `commit` and `issue-tracked-in` by mapping them to `git-commit` and `issue-tracked-by`.
+- Update `comment-patterns` to 0.12.2; Go multiline block-comment handling is covered by a focused utility test, not an editor-host end-to-end test.
+- Prepare version 1.0.19 in both npm manifests. It has not been tagged or published.
+
+## [1.0.19] - 2026-11-01
+
+> Prepared only: v1.0.19 has not been tagged or published.
+
+### Changed
+
+- Replace inherited README text with concise fork-specific installation and configuration guidance; retain the `#configuration`, `#highlighting` and `#markdown-support` anchors and relevant attribution notices.
+- Update repository links and settings/help destinations to `NostraDavid/vscode-todo-tree`; keep historical upstream issue and contribution links intact.
+- Remove the unused Marketplace icon metadata and `resources/todo-tree.png`; runtime settings and commands are unchanged.
+- Align the package and lockfile version at 1.0.19.
+
 ## [1.0.18] - 2026-10-25
 
 ### Changed
@@ -187,5 +207,6 @@ The original Todo Tree release history is preserved in [the upstream changelog](
 - Disable or uninstall `Gruntfuggly.todo-tree`, then install `nostradavid.nostradavid-todo-tree`.
 - Keep the original MIT license and Nigel Scott's copyright notice with the distribution.
 
-[Unreleased]: https://github.com/NostraDavid/todo-tree/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/NostraDavid/todo-tree/releases/tag/v1.0.0
+[Unreleased]: https://github.com/NostraDavid/vscode-todo-tree/compare/v1.0.18...HEAD
+[1.0.19]: https://github.com/NostraDavid/vscode-todo-tree/releases/tag/v1.0.19
+[1.0.0]: https://github.com/NostraDavid/vscode-todo-tree/releases/tag/v1.0.0

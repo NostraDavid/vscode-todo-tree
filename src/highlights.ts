@@ -264,10 +264,11 @@ function highlight(editor: vscode.TextEditor | undefined) {
             const matchIndices = match.indices;
             type.substring(type.indexOf(':') + 1).split(',').map(function(groupText) {
               var group = parseInt(groupText);
-              if (matchIndices && matchIndices[group]) {
+              const range = matchIndices?.[group];
+              if (range) {
                 addDecoration(
-                  editor.document.positionAt(matchIndices[group][0]),
-                  editor.document.positionAt(matchIndices[group][1]),
+                  editor.document.positionAt(range[0]),
+                  editor.document.positionAt(range[1]),
                 );
               }
             });

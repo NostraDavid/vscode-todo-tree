@@ -5,14 +5,16 @@ You need the desktop version of [Visual Studio Code](https://code.visualstudio.c
 
 ## Install the extension
 
-1. Open the Extensions view in VS Code.
-2. If you have Gruntfuggly's Todo Tree installed, disable it for this workspace or uninstall it.
-3. Search for **Todo Tree by NostraDavid** and check that the publisher is **nostradavid**.
-4. Select **Install**.
+### Marketplace
 
-If the first Marketplace release is not available, download the `.vsix` file from [GitHub releases](https://github.com/NostraDavid/todo-tree/releases).
-In the Extensions view, open the **...** menu, select **Install from VSIX...**, and choose that file.
-A VSIX is the installation package for a VS Code extension.
+If a Marketplace listing is available, open the Extensions view, search for **Todo Tree by NostraDavid**, and verify that the publisher is **nostradavid** before installing. This source repository does not imply that a Marketplace listing has been published.
+
+### VSIX package
+
+If a GitHub release includes a `.vsix` asset, download it from [GitHub releases](https://github.com/NostraDavid/vscode-todo-tree/releases).
+In the Extensions view, open the **...** menu, select **Install from VSIX...**, and choose the downloaded file.
+
+Disable or uninstall **Gruntfuggly.todo-tree** before using this fork. Both extensions contribute the same view and commands.
 
 ## Open a TODO
 
@@ -68,5 +70,5 @@ VS Code treats the fork as a separate extension, so installing the original does
 - If Todo Tree cannot find ripgrep, check that the configured executable exists.
 - Enable `todo-tree.general.debug` and inspect Todo Tree's output for the search command and errors.
 
-If the problem remains, [open an issue](https://github.com/NostraDavid/todo-tree/issues) with your operating system, VS Code version, extension version, and a small example.
+If the problem remains, [open an issue](https://github.com/NostraDavid/vscode-todo-tree/issues) with your operating system, VS Code version, extension version, and a small example.
 Remove private paths and file contents from logs before sharing them.

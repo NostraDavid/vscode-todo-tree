@@ -1,7 +1,7 @@
 {
   "name": "nostradavid-todo-tree",
   "displayName": "Todo Tree by NostraDavid",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "Find TODO and FIXME comments with ripgrep. A maintained Todo Tree fork by NostraDavid.",
   "categories": [
     "Other"
@@ -12,13 +12,13 @@
     "tasklist",
     "multi-root ready"
   ],
-  "homepage": "https://github.com/NostraDavid/todo-tree#readme",
+  "homepage": "https://github.com/NostraDavid/vscode-todo-tree#readme",
   "bugs": {
-    "url": "https://github.com/NostraDavid/todo-tree/issues"
+    "url": "https://github.com/NostraDavid/vscode-todo-tree/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NostraDavid/todo-tree.git"
+    "url": "https://github.com/NostraDavid/vscode-todo-tree.git"
   },
   "license": "MIT",
   "author": "NostraDavid",
@@ -1195,16 +1195,15 @@
   ],
   "overrides": {
     "@vscode/vsce": {
-      "@azure/identity": "4.13.0",
-      "uuid": "11.1.1"
+      "minimatch": "11.0.3"
     }
   },
   "dependencies": {
-    "@primer/octicons": "^17.0.0",
-    "comment-patterns": "^0.10.1",
+    "@primer/octicons": "19.42.0",
+    "comment-patterns": "0.12.2",
     "fast-strftime": "^1.1.1",
     "find": "^0.3.0",
-    "micromatch": "^4.0.2",
+    "micromatch": "4.0.8",
     "shell-quote": "1.12.0",
     "treeify": "^1.1.0"
   },
@@ -1212,12 +1211,12 @@
     "@types/node": "24.19.2",
     "@types/qunit": "2.19.14",
     "@types/vscode": "1.72.0",
-    "@vscode/vsce": "4.0.0",
+    "@vscode/vsce": "4.1.0",
     "parse-code-context": "1.0.0",
-    "qunit": "2.26.0",
-    "typescript": "5.9.3",
+    "qunit": "3.0.0",
+    "typescript": "7.0.2",
     "webpack": "5.112.2",
-    "webpack-cli": "7.2.3"
+    "webpack-cli": "7.3.1"
   },
   "engines": {
     "vscode": "^1.72.0"
@@ -1228,6 +1227,5 @@
       "version": ">=24 <25",
       "onFail": "error"
     }
-  },
-  "icon": "resources/todo-tree.png"
+  }
 }
